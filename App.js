@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Drawer from '../proyecto-3-m/src/components/Drawer';
 import Buscador from '../proyecto-3-m/src/components/Buscador';
 import Footer from '../proyecto-3-m/src/components/Footer';
+import Home from './src/components/Home';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
@@ -13,7 +14,7 @@ export default function App() {
         <Drawer/>
       </NavigationContainer>
       <Buscador/>
-
+     <Home/>
       <Footer/>
     </View>
   );
