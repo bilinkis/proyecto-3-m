@@ -51,8 +51,11 @@ export default class Home extends Component () {
                     <ActivityIndicator size='large' color='blue'/>
                     : //sino
                    //habria que poner un flatlist aca
-                   this.state.filterBuscador.map ( (movies, index) => { //devolver la info de la
-                      return <Tarjeta className="card-movies" key = {index} index = {index}id={movies.id} title= {movies.title} rating = {movies.vote_average} image = {movies.poster_path} descripcion= {movies.overview} adult={movies.adult} release_date={movies.release_date} deleteCard={this.deleteCard} moreInfo={this.moreInfo} swap={this.swapPositions}/> 
+
+                   <Flatlist
+                   data= {[this.state.filterBuscador.map ( (movies, index) => { //devolver la info de la
+                      return <Tarjeta key = {index} index = {index}id={movies.id} title= {movies.title} rating = {movies.vote_average} image = {movies.poster_path} descripcion= {movies.overview} adult={movies.adult} release_date={movies.release_date} deleteCard={this.deleteCard} moreInfo={this.moreInfo} swap={this.swapPositions}]} 
+                    
                   })}
                 
 

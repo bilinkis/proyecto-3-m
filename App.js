@@ -14,7 +14,7 @@ export default function App() {
         <Drawer/>
       </NavigationContainer>
       <Buscador/>
-     <Home/>
+      <Home/>
       <Footer/>
     </View>
   );
