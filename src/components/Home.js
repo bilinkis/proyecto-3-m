@@ -2,8 +2,11 @@ import React from 'react';
 import {Text, Image, View, Stylesheet, ActivityIndicator} from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Tarjeta from '../components/Tarjeta';
+import React, { Component } from 'react';
+import {View, Text} from 'react-native';
 
-export default function Home () {
+
+export default class Home extends Component () {
 
     constructor(props){ 
         super(props);
