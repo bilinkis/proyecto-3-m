@@ -1,18 +1,22 @@
 import React, {Component} from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth, db } from '../firebase/config';
+import Post from '../components/Post';
+import Home from './home';
 
 export default class NewPost extends Component {
     constructor(props){
         super(props);
         this.state = {
-            content: ""
+            content: "",
+            likes: 0,
         }
     }
 
 handlePost(){
     db.collection('posts').add({
         owner: auth.currentUser.displayName,
+        likes: this.state.likes,
         description: this.state.content,
         createdAt: Date.now()
     })
@@ -25,6 +29,10 @@ handlePost(){
         .catch(e=>{
             console.log(e)
         })
+}
+
+handleLikes(){
+
 }
 
 render(){
