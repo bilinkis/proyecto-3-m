@@ -1,9 +1,15 @@
 import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import Home from '../components/Home';
 
 
-export default function Home(){
+export default class Home extends Component {
+    constructor(props){
+            super(props);
+            this.state = {
+                
+            }
+        }
 
 
 }
