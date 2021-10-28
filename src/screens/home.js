@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth } from '../firebase/config';
 
 
@@ -8,7 +7,7 @@ export default class Home extends Component {
     constructor(props){
             super(props);
             this.state = {
-                posts=[]
+                posts:[],
             }
         }
 componentDidMount(){

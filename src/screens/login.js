@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../firebase/config';
+import Registro from './register';
 
 
 export default class Login extends Component{
@@ -32,10 +33,12 @@ export default class Login extends Component{
                 onChangeText={text=>this.setState({password:text})}              
                 />
             </Text>
-            <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
+            <TouchableOpacity style = {styles.button} onClick={() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style = {styles.text}> Iniciá sesión </Text>
             </TouchableOpacity>
-
+            <TouchableOpacity style = {styles.button} onClick={() => this.navigation.navigate('Register')}>
+                    <Text style = {styles.text}> ¿No tenés cuenta? Registrate </Text>
+            </TouchableOpacity>
 
 
         </View>        
