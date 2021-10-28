@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Drawer from '../proyecto-3-m/src/components/Drawer';
+import Drawer from '../proyecto-3-m/src/screens/Drawer';
 import Buscador from '../proyecto-3-m/src/components/Buscador';
 import Footer from '../proyecto-3-m/src/components/Footer';
-import Home from './src/components/Home';
+import Home from './src/screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
