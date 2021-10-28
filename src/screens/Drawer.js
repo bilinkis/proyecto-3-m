@@ -14,11 +14,14 @@ export default class Drawer extends Component {
                     error: null,
                 }
             }
-
+            
             handleLogin(email, password){ //promesa
                 auth.signInWithEmailAndPassword(email, password) //método de Auth para iniciar sesión
                 .then(response=>{
                 console.log('Usuario logueado')
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+                        console.log(user)
+                      })
                 this.setState({
                                 loggedIn: true
                 })
@@ -34,6 +37,9 @@ export default class Drawer extends Component {
             handleRegister(email, password){ //promesa
                 auth.createUserWithEmailAndPassword(email, password) //método de Auth para registro
                 .then(response=>{
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+                                console.log(user)
+                              })
                 console.log('Usuario registrado')
                 this.setState({
                                 loggedIn: true
@@ -66,9 +72,14 @@ export default class Drawer extends Component {
                 <NavigationContainer>
                 <Drawer.Navigator initialRouteName="Login">
                     {this.state.loggedIn === true ? 
+                    <>
                     <Drawer.Screen name = "Home">
                         {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
                     </Drawer.Screen>
+                    <Drawer.Screen name = "CreatePost">
+                                {props => <CreatePost {...props}/>}
+                    </Drawer.Screen>
+                    </>
                     :
                     <>
                         <Drawer.Screen name="Login">
