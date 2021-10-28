@@ -6,9 +6,6 @@ import Login from './login';
 import Register from './register';
 import { auth } from '../firebase/config';
 
-
-const Drawer = createDrawerNavigator();
-
 export default class Drawer extends Component {
         constructor(props){
                 super(props);
@@ -63,24 +60,30 @@ export default class Drawer extends Component {
             }
         
         render(){ 
+                const Drawer = createDrawerNavigator();
+
         return (
-           <NavigationContainer>
-                   <Drawer.Navigator>
-                   <Drawer.Screen name= "Iniciar sesión" component= {login}/>
-                   <Drawer.Screen name= "Registrate" component= {register}/>
-                   <Drawer.Screen name= "Más vistas" component= {masVistas}/>
-                   <Drawer.Screen name= "Más vistas" component= {novedades}/>
-
-                   </Drawer.Navigator>
-
-           </NavigationContainer>
-            
+                <NavigationContainer>
+                <Drawer.Navigator initialRouteName="Login">
+                    {this.state.loggedIn === true ? 
+                    <Drawer.Screen name = "Home">
+                        {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
+                    </Drawer.Screen>
+                    :
+                    <>
+                        <Drawer.Screen name="Login">
+                            {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
+                        </Drawer.Screen>
+                        <Drawer.Screen name = "Registro">
+                            {props => <Register {...props} handleRegister={(email, password)=>this.handleRegister(email, password)}/>}
+                        </Drawer.Screen>
+                    </>
+                }
+                </Drawer.Navigator>
+            </NavigationContainer>
         
+
+
+        )}
         
-
-
-            )
-
-
-
-}}
+        }
