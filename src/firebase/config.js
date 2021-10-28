@@ -15,6 +15,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+  console.log(user)
+})
+
+
 export const auth = firebase.auth();
 export const storage = app.storage();
 export const db = app.firestore();
