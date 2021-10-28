@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth } from '../firebase/config';
 

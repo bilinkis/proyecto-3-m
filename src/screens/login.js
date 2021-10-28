@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../firebase/config';
