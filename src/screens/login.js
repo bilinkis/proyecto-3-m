@@ -12,7 +12,7 @@ export default class Login extends Component{
             password: "",
         }
 }
-}
+
 
     render(){
     return(
@@ -33,14 +33,14 @@ export default class Login extends Component{
                 />
             </Text>
             <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
-                    <Text style = {styles.text}> Login </Text>
+                    <Text style = {styles.text}> Iniciá sesión </Text>
             </TouchableOpacity>
 
 
 
         </View>        
     )
-}
+}}
 
 const styles = StyleSheet.create({
 
