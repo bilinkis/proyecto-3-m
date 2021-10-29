@@ -4,6 +4,8 @@ import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Login from './login';
 import Register from './register';
+import Home from './home';
+import NewPost from './NewPost';
 import { auth } from '../firebase/config';
 
 export default class Drawer extends Component {
@@ -15,6 +17,16 @@ export default class Drawer extends Component {
                 }
             }
             
+            componentDidMount(){
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        this.setState({
+                            loggedIn: true
+                        })
+                    }
+                })
+            }
+
             handleLogin(email, password){ //promesa
                 auth.signInWithEmailAndPassword(email, password) //método de Auth para iniciar sesión
                 .then(response=>{
@@ -37,15 +49,17 @@ export default class Drawer extends Component {
             handleRegister(email, password){ //promesa
                 auth.createUserWithEmailAndPassword(email, password) //método de Auth para registro
                 .then(response=>{
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
-                                console.log(user)
-                              })
                 console.log('Usuario registrado')
                 this.setState({
                                 loggedIn: true
                 })
+                response.user.updateProfile({
+                    displayName: email
+                })
+                this.props.navigation.navigate('Home')
                 })
                 .catch(response=>{
+                alert('No se pudo registrar:(')
                 console.log('No se pudo registrar')
                 this.setState({
                         error: 'Error en el registro :('
@@ -66,12 +80,12 @@ export default class Drawer extends Component {
             }
 
             handleLikes(){
-                if (this.state.liked === false){
+                if (this.state.liked === false && this.state.loggedIn === true){
                     this.setState({
                         likes: +1,
                     })
                 }
-                else{
+                else if (this.state.liked === true && this.state.loggedIn === true){
                     this.setState({
                         likes: -1,
                     })
@@ -89,8 +103,8 @@ export default class Drawer extends Component {
                     <Drawer.Screen name = "Home">
                         {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
                     </Drawer.Screen>
-                    <Drawer.Screen name = "CreatePost">
-                                {props => <CreatePost {...props}/>}
+                    <Drawer.Screen name = "New Post">
+                                {props => <NewPost {...props}/>}
                     </Drawer.Screen>
                     </>
                     :
