@@ -36,7 +36,7 @@ export default class Login extends Component{
             <TouchableOpacity style = {styles.button} onClick={() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style = {styles.text}> Iniciá sesión </Text>
             </TouchableOpacity>
-            <TouchableOpacity style = {styles.button} onClick={() => this.navigation.navigate('Register')}>
+            <TouchableOpacity style = {styles.button} onClick={() => this.props.navigation.navigate('Registro')}>
                     <Text style = {styles.text}> ¿No tenés cuenta? Registrate </Text>
             </TouchableOpacity>
 
