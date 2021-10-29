@@ -35,8 +35,8 @@ handlePost(){
 render(){
     return(
         <View>
+            {console.log(this.state.email)}
             <TextInput
-            styles={styles.input}
             keyboardType='default'
             placeholder='¿Qué vas a postear hoy?'
             multiline={true}
@@ -44,8 +44,8 @@ render(){
             onChangeText={post=> this.setState({content:post})}
             value={this.state.content}            
             />
-        <TouchableOpacity style = {styles.button} onPress={() => this.handlePost()}>
-                    <Text style = {styles.text}> Publicar </Text>
+        <TouchableOpacity onPress={() => this.handlePost()}>
+                    <Text > Publicar </Text>
                 </TouchableOpacity>
         </View>
     )
