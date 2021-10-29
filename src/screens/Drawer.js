@@ -64,6 +64,19 @@ export default class Drawer extends Component {
                         console.log(error)
                 })
             }
+
+            handleLikes(){
+                if (this.state.liked === false){
+                    this.setState({
+                        likes: +1,
+                    })
+                }
+                else{
+                    this.setState({
+                        likes: -1,
+                    })
+                }
+            }
         
         render(){ 
                 const Drawer = createDrawerNavigator();

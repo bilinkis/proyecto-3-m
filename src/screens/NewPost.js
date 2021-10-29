@@ -10,6 +10,7 @@ export default class NewPost extends Component {
         this.state = {
             content: "",
             likes: 0,
+            liked: false,
         }
     }
 
@@ -29,10 +30,6 @@ handlePost(){
         .catch(e=>{
             console.log(e)
         })
-}
-
-handleLikes(){
-
 }
 
 render(){
