@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, TextInput} from 'react-native';
 import { auth } from '../firebase/config';
 import Home from './home';
+import Login from './login';
 
 
-export default class Login extends Component{
+export default class Register extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -15,19 +16,19 @@ export default class Login extends Component{
 
 render(){
         return(
-            <View>
+            <View styles={styles.container}>
+                <Text styles={styles.title}>Registrate</Text>
                 <Text>
-
                 <TextInput
-                style={styles.field}
+                style={styles.input}
                 keyboardType="email-address"
-                placeholder="Email"
+                placeholder="johndoe@gmail.com"
                 onChangeText={text => this.setState({ email: text })}
                 />
                 <TextInput
-                style={styles.field}
+                style={styles.input}
                 keyboardType="default"
-                placeholder="Password"
+                placeholder="Password (al menos 6 caracteres!)"
                 SecureTextEntry={true}
                 onChangeText={text => this.setState({ password: text })}
                 />
@@ -35,7 +36,10 @@ render(){
                 </Text>
 
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleRegister(this.state.email, this.state.password)}>
-                <Text>Registrate</Text>
+                <Text styles={styles.text}>Registrate</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style = {styles.redirect} onPress={() => this.props.navigation.navigate('Login')}>
+                <Text styles={styles.text}>¿Ya tenés cuenta? Iniciá sesión</Text>
                 </TouchableOpacity>
             </View>
 
@@ -47,5 +51,46 @@ render(){
 }
 
 const styles = StyleSheet.create({
+    container:{
+        padding: 20,
+     },
+     input: {
+         borderRadius: 25,
+         backgroundColor: 'white',
+         alignContent: 'center',
+         fontSize: 12,
+         width: '50%',
+         height: '150%',
+         justifyContent: 'space-evenly',
+         padding: 10,
+     },
+     button:{
+         borderRadius: 25,
+         backgroundColor: 'white',
+         fontSize: 12,
+         width: '50%',
+         height: '25%',
+         justifyContent: 'space-evenly',
+         padding: 2,
+         marginTop:40,
+         marginLeft: 'auto',
+         marginRight: 'auto',
+ 
+     },
+     text: {
+         marginLeft: 'auto',
+         marginRight: 'auto',
+         fontWeight: 'bold',
+     },
+     redirect:{
+         marginTop:10,  
+     },
+     title:{
+         padding:10,
+         justifyContent: 'space-around',
+         fontSize: 20,
+         fontWeight: 'bold',
+ 
+     }
 
 })

@@ -3,6 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native
 import { auth, db } from '../firebase/config';
 import Post from '../components/Post';
 import Home from './home';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default class NewPost extends Component {
     constructor(props){
@@ -37,6 +38,7 @@ render(){
         <View>
             {console.log(this.state.email)}
             <TextInput
+            styles={styles.input}
             keyboardType='default'
             placeholder='¿Qué vas a postear hoy?'
             multiline={true}
@@ -44,7 +46,7 @@ render(){
             onChangeText={post=> this.setState({content:post})}
             value={this.state.content}            
             />
-        <TouchableOpacity onPress={() => this.handlePost()}>
+        <TouchableOpacity styles={styles.button} onPress={() => this.handlePost()}>
                     <Text > Publicar </Text>
                 </TouchableOpacity>
         </View>
@@ -53,3 +55,29 @@ render(){
 
 
 }
+
+const styles = StyleSheet.create({
+    input: {
+        borderRadius: 25,
+        backgroundColor: 'white',
+        alignContent: 'center',
+        fontSize: 12,
+        width: '50%',
+        height: '150%',
+        justifyContent: 'space-evenly',
+        padding: 10,
+    },
+    button:{
+        borderRadius: 25,
+        backgroundColor: 'white',
+        fontSize: 12,
+        width: '50%',
+        height: '25%',
+        justifyContent: 'space-evenly',
+        padding: 2,
+        marginTop:40,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+
+    },
+})
