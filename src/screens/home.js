@@ -33,7 +33,7 @@ export default class Home extends Component {
             <View style = {styles.container}>
                 <>
                 <Text> Home </Text>
-                <Text>Hola {auth.currentUser.email}!</Text>
+                <Text>Hola {auth.currentUser.username}!</Text>
                 </>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.text}> Cerrar sesión </Text>
