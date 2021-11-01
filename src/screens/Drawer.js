@@ -83,19 +83,6 @@ export default class Drawer extends Component {
                         console.log(error)
                 })
             }
-
-            handleLikes(){
-                if (this.state.liked === false && this.state.loggedIn === true){
-                    this.setState({
-                        likes: +1,
-                    })
-                }
-                else if (this.state.liked === true && this.state.loggedIn === true){
-                    this.setState({
-                        likes: -1,
-                    })
-                }
-            }
         
         render(){ 
                 const Drawer = createDrawerNavigator();
