@@ -12,15 +12,18 @@ export default class NewPost extends Component {
             content: "",
             likes: 0,
             liked: false,
+            comments: '',
         }
     }
 
 handlePost(){
     db.collection('posts').add({
         owner: auth.currentUser.displayName,
-        likes: this.state.likes,
+        email: this.state.email,
         description: this.state.content,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        likes: [],
+        comments: [],
     })
     .then(response => {
         this.setState({
