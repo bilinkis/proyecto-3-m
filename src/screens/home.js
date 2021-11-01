@@ -41,8 +41,8 @@ export default class Home extends Component {
                 {/*<Text>Ups! Todavía no hay posts disponibles</Text>*/}
                 <FlatList
                 data = {this.state.posts}
-                keyExtractor = {post => post.id.toString()}
-                renderItem = { ({item}) => 
+                keyExtractor = {post => post.id.toString()} //pasa el ID a String
+                renderItem = { ({item}) => // Es como un map, imprime los posts y le pasa la info en {item}
                     <Post item = {item}></Post> }
                 />
             </View>
