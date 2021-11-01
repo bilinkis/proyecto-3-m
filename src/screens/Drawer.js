@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {Text, Image, View, Stylesheet} from 'react-native';
 import { NavigationContainer} from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Login from './login';
-import Register from './register';
-import Home from './home';
+import Login from './Login';
+import Register from './Register';
+import Home from './Home';
 import NewPost from './NewPost';
 import { auth } from '../firebase/config';
 
@@ -59,7 +59,7 @@ export default class Drawer extends Component {
                 this.props.navigation.navigate('Home')
                 })
                 .catch(response=>{
-                alert('No se pudo registrar:(')
+                alert('No se pudo registrar :(')
                 console.log('No se pudo registrar')
                 this.setState({
                         error: 'Error en el registro :('

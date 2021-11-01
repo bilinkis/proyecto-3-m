@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { auth } from '../firebase/config';
-import Registro from './register';
 
 
 export default class Login extends Component{
@@ -18,8 +16,9 @@ export default class Login extends Component{
     render(){
     return(
         <View styles={styles.container} >
-            <Text styles={styles.title}>Iniciá sesión</Text>
-            <Text >
+            <Text style={styles.title}>Iniciá sesión</Text>
+            
+                
                 <TextInput
                 style={styles.input}
                 keyboardType="email-address"
@@ -33,7 +32,7 @@ export default class Login extends Component{
                 secureTextEntry={true}
                 onChangeText={text=>this.setState({password:text})}              
                 />
-            </Text>
+            
             <TouchableOpacity style = {styles.button} onClick={() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style = {styles.text}> Iniciá sesión </Text>
             </TouchableOpacity>
@@ -53,10 +52,9 @@ const styles = StyleSheet.create({
     input: {
         borderRadius: 25,
         backgroundColor: 'white',
-        alignContent: 'center',
+        margin:10,
+        height:'12%',
         fontSize: 12,
-        width: '50%',
-        height: '150%',
         justifyContent: 'space-evenly',
         padding: 10,
     },
@@ -84,7 +82,8 @@ const styles = StyleSheet.create({
     title:{
         padding:10,
         justifyContent: 'space-around',
-        fontSize: 20,
+        fontSize: 25,
+        alignItems: 'center',
         fontWeight: 'bold',
 
     }
