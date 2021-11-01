@@ -16,8 +16,8 @@ export default class Register extends Component{
 render(){
         return(
             <View styles={styles.container}>
-                <Text styles={styles.title}>Registrate</Text>
-                <Text>
+                <Text style={styles.title}>Registrate</Text>
+                
                 <TextInput
                 style={styles.input}
                 keyboardType="default"
@@ -38,7 +38,7 @@ render(){
                 onChangeText={text => this.setState({ password: text })}
                 />
 
-                </Text>
+                
 
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleRegister(this.state.email, this.state.password)}>
                 <Text styles={styles.text}>Registrate</Text>
@@ -60,14 +60,13 @@ const styles = StyleSheet.create({
         padding: 20,
      },
      input: {
-         borderRadius: 25,
-         backgroundColor: 'white',
-         alignContent: 'center',
-         fontSize: 12,
-         width: '50%',
-         height: '150%',
-         justifyContent: 'space-evenly',
-         padding: 10,
+        borderRadius: 25,
+        backgroundColor: 'white',
+        margin:10,
+        height:'12%',
+        fontSize: 12,
+        justifyContent: 'space-evenly',
+        padding: 10,
      },
      button:{
          borderRadius: 25,
@@ -91,10 +90,11 @@ const styles = StyleSheet.create({
          marginTop:10,  
      },
      title:{
-         padding:10,
-         justifyContent: 'space-around',
-         fontSize: 20,
-         fontWeight: 'bold',
+        padding:10,
+        justifyContent: 'space-around',
+        fontSize: 25,
+        alignItems: 'center',
+        fontWeight: 'bold',
  
      }
 
