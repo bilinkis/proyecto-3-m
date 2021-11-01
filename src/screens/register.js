@@ -9,6 +9,7 @@ export default class Register extends Component{
         this.state = {
             email: "",
             password: "",
+            username: '',
         }
 }
 
@@ -17,6 +18,12 @@ render(){
             <View styles={styles.container}>
                 <Text styles={styles.title}>Registrate</Text>
                 <Text>
+                <TextInput
+                style={styles.input}
+                keyboardType="default"
+                placeholder="Username"
+                onChangeText={text => this.setState({ username: text })}
+                />
                 <TextInput
                 style={styles.input}
                 keyboardType="email-address"

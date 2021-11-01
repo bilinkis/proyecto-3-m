@@ -28,7 +28,7 @@ export default class Drawer extends Component {
             }
 
             handleLogin(email, password){ //promesa
-                auth.signInWithEmailAndPassword(email, password) //método de Auth para iniciar sesión
+                auth.signInWithEmailAndPassword(email, password, username) //método de Auth para iniciar sesión
                 .then(response=>{
                 console.log('Usuario logueado')
                 auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
