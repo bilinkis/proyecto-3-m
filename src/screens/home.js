@@ -33,7 +33,7 @@ export default class Home extends Component {
             <View style = {styles.container}>
                 <>
                 <Text> Home </Text>
-                <Text>Hola {auth.currentUser.username}!</Text>
+                <Text style={styles.title}>Hola {auth.currentUser.displayName}!</Text>
                 </>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.text}> Cerrar sesión </Text>
@@ -51,5 +51,12 @@ export default class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-
+    title:{
+        padding:10,
+        justifyContent: 'space-around',
+        fontSize: 25,
+        alignItems: 'center',
+        fontWeight: 'bold',
+ 
+     }
 })
