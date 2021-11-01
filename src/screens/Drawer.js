@@ -48,20 +48,24 @@ export default class Drawer extends Component {
             }
 
             handleRegister(email, password, username){ //promesa
+                console.log(email,password,username)
                 auth.createUserWithEmailAndPassword(email, password) //método de Auth para registro
                 .then(response=>{
                 console.log('Usuario registrado')
                 this.setState({
                                 loggedIn: true
                 })
-                response.user.updateProfile({
-                    displayName: username
-                })
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+                    console.log(user)
+                    user.updateProfile({
+                        displayName: username
+                    })
+                  })
+                
                 this.props.navigation.navigate('Home')
                 })
-                .catch(response=>{
-                alert('No se pudo registrar :(')
-                console.log('No se pudo registrar')
+                .catch(error=>{
+                console.log(error)
                 this.setState({
                         error: 'Error en el registro :('
                 })
@@ -114,7 +118,7 @@ export default class Drawer extends Component {
                             {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
                         </Drawer.Screen>
                         <Drawer.Screen name = "Register">
-                            {props => <Register {...props} handleRegister={(email, password)=>this.handleRegister(email, password)}/>}
+                            {props => <Register {...props} handleRegister={(email, password,username)=>this.handleRegister(email, password,username)}/>}
                         </Drawer.Screen>
                     </>
                 }
