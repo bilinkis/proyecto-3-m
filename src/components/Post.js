@@ -6,7 +6,7 @@ import { farHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { fasHeart } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase';
-import {auth} from '../firebase/config';
+import {auth, db} from '../firebase/config';
 
 export default class Post extends Component{
 
@@ -70,12 +70,13 @@ export default class Post extends Component{
     <View styles={styles.container}>
         <Text>{this.props.item.data.description}</Text> {
             ! this.state.liked ?
-            <TouchableOpacity onPress={() => this.props.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
             :
-            <TouchableOpacity onPress={() => this.props.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
  
 
         }
+        <Text>Likes: {this.props.item.data.likes}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         <Text>{this.props.item.data.owner}</Text>
     </View>
