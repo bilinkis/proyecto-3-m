@@ -3,8 +3,10 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { farHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { fasHeart } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase';
+import {auth} from '../firebase/config';
 
 export default class Post extends Component{
 
@@ -22,6 +24,11 @@ export default class Post extends Component{
             this.setState({
                 likes: this.props.item.data.likes.length
             })
+            if (this.props.item.data.likes.includes(auth.currentUser.email)){
+                this.setState({
+                    liked: true,
+                })
+            }
         }
 
     }
@@ -61,16 +68,16 @@ export default class Post extends Component{
    render(){
        return(
     <View styles={styles.container}>
-        <Text>{item.data.description}</Text> {
+        <Text>{this.props.item.data.description}</Text> {
             ! this.state.liked ?
-            <TouchableOpacity onPress={() => this.props.handleLikes()}><Text><FontAwesomeIcon icon={farHeart}/></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
             :
-            <TouchableOpacity onPress={() => this.props.handleDislikes()}><Text><FontAwesomeIcon icon={fasHeart}/></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
  
 
         }
-        <Text>{item.data.createdAt}</Text>
-        <Text>{item.data.owner}</Text>
+        <Text>{this.props.item.data.createdAt}</Text>
+        <Text>{this.props.item.data.owner}</Text>
     </View>
 )}
 

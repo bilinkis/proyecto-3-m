@@ -8,9 +8,9 @@ export default class NewPost extends Component {
         super(props);
         this.state = {
             content: "",
-            likes: 0,
+            likes: [],
             liked: false,
-            comments: '',
+            comments: [],
         }
     }
 
