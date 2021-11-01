@@ -30,6 +30,7 @@ export default class Drawer extends Component {
             handleLogin(email, password){ //promesa
                 auth.signInWithEmailAndPassword(email, password) //método de Auth para iniciar sesión
                 .then(response=>{
+                    console.log(response)
                 console.log('Usuario logueado')
                 auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
                         console.log(user)
@@ -109,11 +110,11 @@ export default class Drawer extends Component {
                     </>
                     :
                     <>
-                        <Drawer.Screen name="Iniciá sesión">
+                        <Drawer.Screen name="Login">
                             {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
                         </Drawer.Screen>
-                        <Drawer.Screen name = "Registrate">
-                            {props => <Register {...props} handleRegister={(email, password, username)=>this.handleRegister(email, password, username)}/>}
+                        <Drawer.Screen name = "Register">
+                            {props => <Register {...props} handleRegister={(email, password)=>this.handleRegister(email, password)}/>}
                         </Drawer.Screen>
                     </>
                 }
