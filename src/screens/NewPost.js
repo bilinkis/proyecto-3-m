@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth, db } from '../firebase/config';
-import Post from '../components/Post';
-import Home from './home';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+
 
 export default class NewPost extends Component {
     constructor(props){
@@ -60,24 +58,23 @@ const styles = StyleSheet.create({
     input: {
         borderRadius: 25,
         backgroundColor: 'white',
-        alignContent: 'center',
+        margin:10,
+        height:'12%',
         fontSize: 12,
-        width: '50%',
-        height: '150%',
         justifyContent: 'space-evenly',
         padding: 10,
     },
     button:{
         borderRadius: 25,
-        backgroundColor: 'white',
-        fontSize: 12,
-        width: '50%',
-        height: '25%',
-        justifyContent: 'space-evenly',
-        padding: 2,
-        marginTop:40,
-        marginLeft: 'auto',
-        marginRight: 'auto',
+         backgroundColor: 'white',
+         fontSize: 12,
+         width: '50%',
+         height: '25%',
+         justifyContent: 'space-evenly',
+         padding: 2,
+         marginTop:40,
+         marginLeft: 'auto',
+         marginRight: 'auto',
 
     },
 })
