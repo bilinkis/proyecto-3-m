@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import {Text, TouchableOpacity, View, StyleSheet, TextInput} from 'react-native';
+import Register from './Register';
 
 
 export default class Login extends Component{
@@ -33,10 +33,10 @@ export default class Login extends Component{
                 onChangeText={text=>this.setState({password:text})}              
                 />
             
-            <TouchableOpacity style = {styles.button} onClick={() => this.props.handleLogin(this.state.email, this.state.password)}>
+            <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogin(this.state.email, this.state.password)}>
                     <Text style = {styles.text}> Iniciá sesión </Text>
             </TouchableOpacity>
-            <TouchableOpacity style = {styles.redirect} onClick={() => this.props.navigation.navigate('Registro')}>
+            <TouchableOpacity style = {styles.redirect} onPress={() => this.props.navigation.navigate('Register')}>
                     <Text style = {styles.text}> ¿No tenés cuenta? Registrate </Text>
             </TouchableOpacity>
 
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
         marginTop:40,
         marginLeft: 'auto',
         marginRight: 'auto',
+        zIndex:1
 
     },
     text: {
