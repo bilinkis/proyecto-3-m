@@ -20,8 +20,8 @@ handlePost(){
         email: this.state.email,
         description: this.state.content,
         createdAt: Date.now(),
-        likes: [],
-        comments: [],
+        likes: 0,
+        comments: 0,
     })
     .then(response => {
         this.setState({

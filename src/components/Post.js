@@ -16,10 +16,11 @@ export default class Post extends Component{
             liked: false,
             likes:0,
             modal: true,
+            comments:0,
 
         }
     }
-
+    
     componentDidMount(){
         if(this.props.item.data.likes.length !== 0 ){
             this.setState({
@@ -33,7 +34,7 @@ export default class Post extends Component{
         }
 
     }
-
+    
     handleLikes(){
         console.log(this.props.item.id)
         const actualizamosPost = db.collection('posts').doc(this.props.item.id)
@@ -64,9 +65,22 @@ export default class Post extends Component{
             })
 
         })
+
+        
+
         
     }
+    showModal(){
+        this.setState({
+            modal: true, //muestra modal
+        })
+    }
 
+    closeModal(){
+        this.setState({
+            modal: false, //oculta moda
+        })
+    }
 
    render(){
        console.log(this.props)
@@ -83,11 +97,24 @@ export default class Post extends Component{
         <Text>Likes: {this.state.likes}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         <Text>{this.props.item.data.owner}</Text>
+        {this.state.modal === false ?
+        <TouchableOpacity onPress={()=>this.showModal()}> Ver comentarios </TouchableOpacity>
+        :
+        this.state.comments == 0 ?
+        <Text>No hay comentarios aún. ¡Sé el primero en hacerlo!</Text>
+        :
         <Modal visible={this.state.modal}
         animationType='fade'
         transparent= {true}>
-                <Text>Acá va el modal</Text>
+            <TouchableOpacity onPress={()=>this.closeModal()}><Text>X</Text></TouchableOpacity>
+            <FlatList
+                data = {this.props.item.data.comments}
+                keyExtractor = {post => post.id.toString()} 
+                renderItem = { ({item}) =>
+                    <Text> {item.owner} {item.comments}</Text> }
+                />
         </Modal>
+   }
     </View>
 )}
 
