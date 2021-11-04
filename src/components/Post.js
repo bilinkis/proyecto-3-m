@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, Modal } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { farHeart } from '@fortawesome/free-solid-svg-icons'
@@ -15,6 +15,7 @@ export default class Post extends Component{
         this.state = {
             liked: false,
             likes:0,
+            modal: true,
 
         }
     }
@@ -34,7 +35,8 @@ export default class Post extends Component{
     }
 
     handleLikes(){
-        const actualizamosPost = db.collection('posts').doc(this.props.id)
+        console.log(this.props.item.id)
+        const actualizamosPost = db.collection('posts').doc(this.props.item.id)
         actualizamosPost.update({
             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.displayName)
 
@@ -49,7 +51,8 @@ export default class Post extends Component{
         
     }
     handleDislikes(){
-        const actualizamosPost = db.collection('posts').doc(this.props.id)
+        console.log('se dislikea')
+        const actualizamosPost = db.collection('posts').doc(this.props.item.id)
         actualizamosPost.update({
             likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.displayName)
 
@@ -66,6 +69,7 @@ export default class Post extends Component{
 
 
    render(){
+       console.log(this.props)
        return(
     <View styles={styles.container}>
         <Text>{this.props.item.data.description}</Text> {
@@ -76,9 +80,14 @@ export default class Post extends Component{
  
 
         }
-        <Text>Likes: {this.props.item.data.likes}</Text>
+        <Text>Likes: {this.state.likes}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         <Text>{this.props.item.data.owner}</Text>
+        <Modal visible={this.state.modal}
+        animationType='fade'
+        transparent= {true}>
+                <Text>Acá va el modal</Text>
+        </Modal>
     </View>
 )}
 
