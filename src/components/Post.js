@@ -86,13 +86,11 @@ export default class Post extends Component{
        console.log(this.props)
        return(
     <View styles={styles.container}>
-        <Text>{this.props.item.data.description}</Text> {
-            ! this.state.liked ?
+        <Text>{this.props.item.data.description}</Text> 
+        {!!this.state.liked ?
             <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
             :
             <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
- 
-
         }
         <Text>Likes: {this.state.likes}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
