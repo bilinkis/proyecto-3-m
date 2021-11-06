@@ -38,7 +38,7 @@ export default class Home extends Component {
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.text}> Cerrar sesión </Text>
                 </TouchableOpacity>
-                {/*<Text>Ups! Todavía no hay posts disponibles</Text>*/}
+                
                 <FlatList
                 data = {this.state.posts}
                 keyExtractor = {post => post.id.toString()} //pasa el ID a String
