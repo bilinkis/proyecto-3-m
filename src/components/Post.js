@@ -88,7 +88,7 @@ export default class Post extends Component{
        return(
     <View styles={styles.container}>
         <Card>
-        <Card.Title>{this.props.item.data.description}</Card.Title>
+        <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
         
         <Card.Divider/>
         {!!this.state.liked ?
@@ -134,6 +134,13 @@ const styles = StyleSheet.create({
     text:{
         fontSize:18,
         fontWeight:'bold',
+    },
+    title:{
+        padding:10,
+        justifyContent: 'space-around',
+        fontSize: 25,
+        alignItems: 'center',
+        fontWeight: 'bold',
     }
    
 })
