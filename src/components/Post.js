@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { View, Text, Image, StyleSheet, Modal } from 'react-native'
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { farHeart } from '@fortawesome/free-solid-svg-icons'
@@ -86,15 +87,19 @@ export default class Post extends Component{
        console.log(this.props)
        return(
     <View styles={styles.container}>
-        <Text>{this.props.item.data.description}</Text> 
+        <Card>
+        <Card.Title>{this.props.item.data.description}</Card.Title>
+        
+        <Card.Divider/>
         {!!this.state.liked ?
             <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
             :
             <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
         }
-        <Text>Likes: {this.state.likes}</Text>
+        <Text style={styles.text}>Likes: {this.state.likes}</Text>
+        <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
-        <Text>{this.props.item.data.owner}</Text>
+        
         {this.state.modal === false ?
         <TouchableOpacity onPress={()=>this.showModal()}> Ver comentarios </TouchableOpacity>
         :
@@ -113,6 +118,7 @@ export default class Post extends Component{
                 />
         </Modal>
    }
+   </Card>
     </View>
 )}
 
@@ -124,6 +130,10 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+    },
+    text:{
+        fontSize:18,
+        fontWeight:'bold',
     }
    
 })
