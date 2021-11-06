@@ -84,13 +84,14 @@ export default class Post extends Component{
     }
 
    render(){
-       console.log(this.props)
+       console.log(auth.currentUser)
        return(
     <View styles={styles.container}>
         <Card>
         <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
         
         <Card.Divider/>
+        <Card.Image style={styles.image} source={{uri:'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'}}/>
         {!!this.state.liked ?
             <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
             :
@@ -141,6 +142,11 @@ const styles = StyleSheet.create({
         fontSize: 25,
         alignItems: 'center',
         fontWeight: 'bold',
+    },
+    image:{
+        width:'100%',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
    
 })
