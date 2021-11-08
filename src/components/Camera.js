@@ -171,7 +171,8 @@ const styles = StyleSheet.create({
     },
     icon:{
         alignItems: 'center',
-        flex:1,justifyContent: 'space-around',
+        flex:1,
+        justifyContent: 'space-around',
 
     }
 })
