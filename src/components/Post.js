@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     like:{
-        color:'black'
+        marginTop:10,
+        color:'grey'
     },
     dislike:{
         color:"red"
