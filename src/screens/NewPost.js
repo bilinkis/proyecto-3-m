@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { auth, db } from '../firebase/config';
+import Camera from '../components/Camera';
 
 
 export default class NewPost extends Component {
@@ -11,6 +12,8 @@ export default class NewPost extends Component {
             likes: [],
             liked: false,
             comments: [],
+            photo:'',
+            showCamera: true,
         }
     }
 
@@ -22,6 +25,7 @@ handlePost(){
         createdAt: Date.now(),
         likes: 0,
         comments: 0,
+        photo: this.state.photo,    
     })
     .then(response => {
         this.setState({
@@ -34,8 +38,20 @@ handlePost(){
         })
 }
 
+savePhoto(){
+    this.setState({
+        photo: url,
+        showCamera: false,
+    })
+}
+
 render(){
     return(
+            <>
+            {this.state.showCamera ? 
+            <Camera savePhoto = {(url)=>this.guardarFoto(url)}/>
+            :
+            <>
         <View>
             {console.log(this.state.email)}
             <TextInput
@@ -51,6 +67,9 @@ render(){
                     <Text > Publicar </Text>
                 </TouchableOpacity>
         </View>
+        </>
+            }
+        </>
     )
 }
 
@@ -81,3 +100,4 @@ const styles = StyleSheet.create({
 
     },
 })
+
