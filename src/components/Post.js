@@ -27,13 +27,18 @@ export default class Post extends Component{
             this.setState({
                 likes: this.props.item.data.likes.length
             })
-            if (this.props.item.data.likes.includes(auth.currentUser.email)){
-                this.setState({
-                    liked: true,
-                })
-            }
+            
         }
 
+    }
+    componentWillUpdate(){
+        if(this.state.liked === false){
+        if (this.props.item.data.likes.includes(auth.currentUser.displayName)){
+            this.setState({
+                liked: true,
+            })
+        }
+    }
     }
     
     handleLikes(){
@@ -53,10 +58,11 @@ export default class Post extends Component{
         
     }
     handleDislikes(){
-        console.log('se dislikea')
+        console.log('se dislikea', this.props.item.id)
         const actualizamosPost = db.collection('posts').doc(this.props.item.id)
+        console.log(actualizamosPost)
         actualizamosPost.update({
-            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.displayName)
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.displayName)
 
         })
         .then(()=>{
@@ -92,10 +98,10 @@ export default class Post extends Component{
         
         <Card.Divider/>
         <Card.Image style={styles.image} source={{uri:'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'}}/>
-        {!!this.state.liked ?
-            <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
+        {this.state.liked == false ?
+            <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon style={styles.like} icon={faHeart}/></Text></TouchableOpacity>
             :
-            <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon icon={faHeart}/></Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon style={styles.dislike} icon={faHeart}/></Text></TouchableOpacity>
         }
         <Text style={styles.text}>Likes: {this.state.likes}</Text>
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
@@ -147,6 +153,12 @@ const styles = StyleSheet.create({
         width:'100%',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    like:{
+        color:'black'
+    },
+    dislike:{
+        color:"red"
     }
    
 })
