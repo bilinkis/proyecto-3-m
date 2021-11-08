@@ -83,6 +83,30 @@ export default class Post extends Component{
         })
     }
 
+    postComment(){
+        
+        let comment = {
+            author: auth.currentUser.email,
+            createdAt: Date.now(),
+            commentContent: this.state.comment
+        }
+        
+        db.collection('posts').doc(this.props.data.id).update({
+            comments: firebase.firestore.FieldValue.arrayUnion(comment)
+        })
+        .then(()=>{
+            console.log('Comentario guardado');
+            this.setState({
+                comment: ''
+            })
+        })
+        .catch( e => console.log(e))
+
+        
+    }
+
+    
+
    render(){
        console.log(auth.currentUser)
        return(
@@ -101,24 +125,39 @@ export default class Post extends Component{
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         
-        {this.state.modal === false ?
-        <TouchableOpacity onPress={()=>this.showModal()}> Ver comentarios </TouchableOpacity>
-        :
-        this.state.comments == 0 ?
-        <Text>No hay comentarios aún. ¡Sé el primero en hacerlo!</Text>
-        :
-        <Modal visible={this.state.modal}
-        animationType='fade'
-        transparent= {true}>
-            <TouchableOpacity onPress={()=>this.closeModal()}><Text>X</Text></TouchableOpacity>
-            <FlatList
-                data = {this.props.item.data.comments}
-                keyExtractor = {post => post.id.toString()} 
-                renderItem = { ({item}) =>
-                    <Text> {item.owner} {item.comments}</Text> }
-                />
-        </Modal>
-   }
+        {this.state.showModal === true?    
+                    <Modal style={styles.modalContainer}
+                            animationType='fade'
+                            transparent={false}
+                            visible = {this.state.showModal}>
+                        <TouchableOpacity onPress={()=>this.closeModal()}>
+                            <Text style={styles.closeButton}>X</Text>
+                        </TouchableOpacity>
+                        {
+                            this.props.data.data.comments !==0 ?
+                                <FlatList 
+                                    data={this.props.data.data.comments}
+                                    keyExtractor={post => post.createdAt.toString()}
+                                    renderItem={({item})=> <Text> {item.author}: {item.commentContent}</Text>}
+                                /> :
+                                <Text>No hay comentarios todavía.</Text>
+                        }
+                        <View>
+                            <TextInput keyboardType='defualt'
+                                        placeholder='Escribí tu comentario'
+                                        onChangeText={(text)=>{this.setState({comment: text})}}
+                                        multiline
+                                        value={this.state.comment}
+                            />
+                            <TouchableOpacity onPress={()=>this.postComment()}>
+                                <Text>Enviar</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </Modal> :
+                    <Text onPress={()=> this.showModal()}>Ver comentarios</Text>
+                   
+               }
    </Card>
     </View>
 )}
