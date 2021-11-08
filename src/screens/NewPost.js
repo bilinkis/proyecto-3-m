@@ -20,7 +20,7 @@ export default class NewPost extends Component {
 handlePost(){
     db.collection('posts').add({
         owner: auth.currentUser.displayName,
-        email: this.state.email,
+        email: auth.currentUser.email,
         description: this.state.content,
         createdAt: Date.now(),
         likes: 0,
@@ -38,7 +38,7 @@ handlePost(){
         })
 }
 
-savePhoto(){
+savePhoto(url){
     this.setState({
         photo: url,
         showCamera: false,
@@ -49,7 +49,7 @@ render(){
     return(
             <>
             {this.state.showCamera ? 
-            <Camera savePhoto = {(url)=>this.guardarFoto(url)}/>
+            <Camera savePhoto = {(url)=>this.savePhoto(url)}/>
             :
             <>
         <View>

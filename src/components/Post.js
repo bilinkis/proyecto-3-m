@@ -30,7 +30,8 @@ export default class Post extends Component{
 
     }
     componentWillUpdate(){
-        if(this.state.liked === false){
+        console.log(this.props.item)
+        if(this.state.liked === false && this.props.item.data.likes.length > 0){
         if (this.props.item.data.likes.includes(auth.currentUser.displayName)){
             this.setState({
                 liked: true,
@@ -94,7 +95,7 @@ export default class Post extends Component{
             createdAt: Date.now(),
             commentContent: this.state.comment
         }
-        db.collection('posts').doc(this.props.data.id).update({
+        db.collection('posts').doc(this.props.item.id).update({
             comments: firebase.firestore.FieldValue.arrayUnion(comment)
         })
         .then(()=>{
