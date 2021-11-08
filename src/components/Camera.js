@@ -2,6 +2,8 @@ import { Camera } from 'expo-camera';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { storage } from '../firebase/config';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 
 export default class MyCamera extends React.Component{
     constructor(props){
@@ -99,6 +101,7 @@ export default class MyCamera extends React.Component{
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => this.takePicture()}>
+                        <Text><FontAwesomeIcon style={styles.icon} icon={faCamera}/></Text>
                     </TouchableOpacity>
                 </View>
             </Camera>
@@ -108,5 +111,68 @@ export default class MyCamera extends React.Component{
     }
 }
 const styles = StyleSheet.create({
-    
+    container: {
+        flex: 1,
+        width: '100%'
+    },
+    camera: {
+        flex: 1,
+        width: '100%',
+    },
+    buttonContainer: {
+        width: '100%',
+        height: 124,
+        position: 'absolute',
+        bottom: 40,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    button: {
+        width: 50,
+        height: '100%',
+        borderWidth: 5,
+        borderColor: 'white',
+        borderRadius: 100,
+        backgroundColor: 'rgba(255,255,255,1)'
+    },
+    text: {
+        width: '100%',
+        textAlign: 'center',
+        color: 'white',
+        paddingTop: 15
+    },
+    imageContainer: {
+        height: '90%',
+    },
+    preview: {
+        width: '100%',
+        flex: 6
+    },
+    btnContainer: {
+        flex: 1,
+        backgroundColor: '#000020',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '100%',
+    },
+    accept: {
+        width: 100,
+        height: 50,
+        backgroundColor: '#7F6DF3',
+        borderRadius: 50
+    },
+    reject: {
+        width: 100,
+        height: 50,
+        backgroundColor: '#FF392B',
+        borderRadius: 50
+    },
+    icon:{
+        alignItems: 'center',
+        flex:1,
+        justifyContent: 'space-around',
+
+    }
 })
