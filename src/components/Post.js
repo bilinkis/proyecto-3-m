@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
-import { View, Text, Image, StyleSheet, Modal } from 'react-native'
+import { View, Text, Image, StyleSheet, Modal, FlatList, TextInput } from 'react-native'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { farHeart } from '@fortawesome/free-solid-svg-icons'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
-import { fasHeart } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 
@@ -96,7 +94,6 @@ export default class Post extends Component{
             createdAt: Date.now(),
             commentContent: this.state.comment
         }
-        
         db.collection('posts').doc(this.props.data.id).update({
             comments: firebase.firestore.FieldValue.arrayUnion(comment)
         })
@@ -131,25 +128,25 @@ export default class Post extends Component{
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         
-        {this.state.showModal === true?    
-                    <Modal style={styles.modalContainer}
+        {this.state.modal === true?    
+                    <Modal style={styles.modal}
                             animationType='fade'
                             transparent={false}
                             visible = {this.state.showModal}>
                         <TouchableOpacity onPress={()=>this.closeModal()}>
-                            <Text style={styles.closeButton}>X</Text>
+                            <Text>X</Text>
                         </TouchableOpacity>
                         {
-                            this.props.data.data.comments !==0 ?
+                            this.props.item.data.comments !==0 ?
                                 <FlatList 
-                                    data={this.props.data.data.comments}
+                                    data={this.props.item.data.comments}
                                     keyExtractor={post => post.createdAt.toString()}
                                     renderItem={({item})=> <Text> {item.author}: {item.commentContent}</Text>}
                                 /> :
                                 <Text>No hay comentarios todavía.</Text>
                         }
                         <View>
-                            <TextInput keyboardType='defualt'
+                            <TextInput keyboardType='default'
                                         placeholder='Escribí tu comentario'
                                         onChangeText={(text)=>{this.setState({comment: text})}}
                                         multiline
@@ -161,7 +158,7 @@ export default class Post extends Component{
                         </View>
 
                     </Modal> :
-                    <Text onPress={()=> this.showModal()}>Ver comentarios</Text>
+                    <TouchableOpacity onPress={()=> this.showModal()}><Text>Ver comentarios</Text></TouchableOpacity>
                    
                }
    </Card>
@@ -199,6 +196,12 @@ const styles = StyleSheet.create({
     },
     dislike:{
         color:"red"
+    },
+    modal:{
+        border: 'none',
+    },
+    closeButtonModal:{
+        color: 'black',
     }
    
 })

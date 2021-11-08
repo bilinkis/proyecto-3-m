@@ -38,8 +38,6 @@ render(){
                 onChangeText={text => this.setState({ password: text })}
                 />
 
-                
-
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleRegister(this.state.email, this.state.password,this.state.username)}>
                 <Text styles={styles.text}>Registrate</Text>
                 </TouchableOpacity>
