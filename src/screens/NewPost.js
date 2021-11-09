@@ -55,7 +55,7 @@ render(){
         <View>
             {console.log(this.state.email)}
             <TextInput
-            styles={styles.input}
+            style={styles.input}
             keyboardType='default'
             placeholder='¿Qué vas a postear hoy?'
             multiline={true}
@@ -63,9 +63,10 @@ render(){
             onChangeText={post=> this.setState({content:post})}
             value={this.state.content}            
             />
-        <TouchableOpacity styles={styles.button} onPress={() => this.handlePost()}>
-                    <Text > Publicar </Text>
-                </TouchableOpacity>
+            <TouchableOpacity style = {styles.button} onPress={() => this.handlePost()}>
+                    <Text style = {styles.text}> Submit </Text>
+            </TouchableOpacity>
+        
         </View>
         </>
             }
@@ -81,23 +82,29 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         backgroundColor: 'white',
         margin:10,
-        height:'12%',
-        fontSize: 12,
+        height:50,
+        fontSize: 14,
         justifyContent: 'space-evenly',
         padding: 10,
     },
     button:{
         borderRadius: 25,
-         backgroundColor: 'white',
-         fontSize: 12,
-         width: '50%',
-         height: '25%',
-         justifyContent: 'space-evenly',
-         padding: 2,
-         marginTop:40,
-         marginLeft: 'auto',
-         marginRight: 'auto',
+        backgroundColor: 'white',
+        fontSize: 12,
+        width: 100,
+        height: 50,
+        justifyContent: 'space-evenly',
+        padding: 2,
+        marginTop:40,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        zIndex:1
 
+    },
+    text: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontWeight: 'bold',
     },
 })
 
