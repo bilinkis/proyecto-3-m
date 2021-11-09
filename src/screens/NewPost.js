@@ -23,7 +23,7 @@ handlePost(){
         email: auth.currentUser.email,
         description: this.state.content,
         createdAt: Date.now(),
-        likes: 0,
+        likes: [],
         comments: 0,
         photo: this.state.photo,    
     })
