@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import Home from './Home';
 import NewPost from './NewPost';
+import Search from './Search';
 import { auth } from '../firebase/config';
 
 export default class Drawer extends Component {
@@ -97,6 +98,9 @@ export default class Drawer extends Component {
                     </Drawer.Screen>
                     <Drawer.Screen name = "New Post">
                                 {props => <NewPost {...props}/>}
+                    </Drawer.Screen>
+                    <Drawer.Screen name = "Search">
+                                {props => <Search {...props}/>}
                     </Drawer.Screen>
                     </>
                     :
