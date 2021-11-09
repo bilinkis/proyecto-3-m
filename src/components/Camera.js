@@ -97,7 +97,7 @@ export default class MyCamera extends React.Component{
                 ref = {referencia => this.camera = referencia}
             >
               
-                <View>
+                <View style={styles.btnContainer}>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => this.takePicture()}>
@@ -130,11 +130,13 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 50,
-        height: '100%',
+        height: 50,
         borderWidth: 5,
         borderColor: 'white',
         borderRadius: 100,
-        backgroundColor: 'rgba(255,255,255,1)'
+        backgroundColor: 'rgba(255,255,255,1)',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     text: {
         width: '100%',
@@ -150,12 +152,15 @@ const styles = StyleSheet.create({
         flex: 6
     },
     btnContainer: {
-        flex: 1,
-        backgroundColor: '#000020',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
+        backgroundColor:'black',
         width: '100%',
+        height: 60,
+        position: 'absolute',
+        bottom: 0,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     accept: {
         width: 100,
