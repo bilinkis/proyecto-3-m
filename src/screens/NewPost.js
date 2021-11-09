@@ -19,7 +19,7 @@ export default class NewPost extends Component {
 
 handlePost(){
     db.collection('posts').add({
-        owner: auth.currentUser.displayName,
+        owner: auth.currentUser.email,
         email: auth.currentUser.email,
         description: this.state.content,
         createdAt: Date.now(),
