@@ -125,7 +125,7 @@ export default class Post extends Component{
             :
             <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon style={styles.dislike} icon={faHeart}/></Text></TouchableOpacity>
         }
-        <Text style={styles.text}>Likes: {this.state.likes}</Text>
+        <Text style={styles.text}>Likes: {Number(this.state.likes)}</Text>
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
         <Text>{this.props.item.data.createdAt}</Text>
         
@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
         color:'grey'
     },
     dislike:{
+        marginTop:10,
         color:"red"
     },
     modal:{
