@@ -119,7 +119,7 @@ export default class Post extends Component{
         <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
         
         <Card.Divider/>
-        <Card.Image style={styles.image} source={{uri:'https://monstar-lab.com/global/wp-content/uploads/sites/11/2019/04/male-placeholder-image.jpeg'}}/>
+        <Card.Image style={styles.image} source={{uri:this.props.item.data.photo}}/>
         {this.state.liked == false ?
             <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon style={styles.like} icon={faHeart}/></Text></TouchableOpacity>
             :
