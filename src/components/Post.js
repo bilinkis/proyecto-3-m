@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Modal, FlatList, TextInput } from 'react
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons'
 import firebase from 'firebase';
 import {auth, db} from '../firebase/config';
 
@@ -71,10 +71,9 @@ export default class Post extends Component{
             })
 
         })
-
-        
-
-        
+    }
+    handleDelete(){
+        db.collection('posts').doc(this.props.item.id).delete()
     }
     showModal(){
         this.setState({
@@ -116,8 +115,15 @@ export default class Post extends Component{
        return(
     <View styles={styles.container}>
         <Card>
-        <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
         
+        {auth.currentUser.email === this.props.item.data.owner ?
+        <Text style={styles.title}>
+            <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
+        <TouchableOpacity onPress={() => this.handleDelete()}><Text><FontAwesomeIcon style={styles.trash} icon={faTrash}/></Text></TouchableOpacity>
+        </Text>
+        :
+        <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
+    }
         <Card.Divider/>
         <Card.Image style={styles.image} source={{uri:this.props.item.data.photo}}/>
         {this.state.liked == false ?
@@ -230,7 +236,7 @@ const styles = StyleSheet.create({
         padding:10,
         justifyContent: 'space-around',
         fontSize: 25,
-        alignItems: 'center',
+        alignSelf: 'center',
         fontWeight: 'bold',
     },
     image:{
@@ -267,6 +273,9 @@ const styles = StyleSheet.create({
     },
     closeButtonModal:{
         color: 'black',
+    },
+    trash:{
+        color:'black'
     }
    
 })
