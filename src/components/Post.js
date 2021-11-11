@@ -121,13 +121,18 @@ export default class Post extends Component{
         <Card.Divider/>
         <Card.Image style={styles.image} source={{uri:this.props.item.data.photo}}/>
         {this.state.liked == false ?
+        <Text style={styles.likes}>
             <TouchableOpacity onPress={() => this.handleLikes()}><Text><FontAwesomeIcon style={styles.like} icon={faHeart}/></Text></TouchableOpacity>
+            <Text style={styles.text}>{Number(this.state.likes)}</Text>
+            </Text>
             :
+            <Text  style={styles.likes}>
             <TouchableOpacity onPress={() => this.handleDislikes()}><Text><FontAwesomeIcon style={styles.dislike} icon={faHeart}/></Text></TouchableOpacity>
+            <Text style={styles.text}>{Number(this.state.likes)}</Text>
+            </Text>
         }
-        <Text style={styles.text}>Likes: {Number(this.state.likes)}</Text>
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
-        <Text>Publicado el: {this.props.item.data.createdAt}</Text>
+        <Text style={styles.text}>Publicado el: {String(new Date(this.props.item.data.createdAt).toLocaleString())}</Text>
         
         {this.state.modal === true?    
                     <Modal style={styles.modal}
@@ -177,12 +182,21 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    infoContainer:{
+        flex:1,
+        flexDirection:'column',
+        
+    },
     comentarios:{
         padding: 10,
     },
     text:{
         fontSize:18,
         fontWeight:'bold',
+        paddingLeft:10,
+        alignSelf:'center',
+        justifyContent:'center',
+        flex:1
     },
     vercomm:{
         fontWeight: 'bold',
@@ -228,12 +242,18 @@ const styles = StyleSheet.create({
         marginTop:10,
         color:'grey'
     },
+    likes:{
+        flex:1,
+        flexDirection:'row',
+        flexWrap: 'wrap'
+    },
     send:{
         fontWeight: 'bold',
         backgroundColor: 'black',
         color: 'white',
         borderRadius: 3,
         textAlign: 'center',
+        alignItems: 'center'
 
     },
     dislike:{
@@ -242,6 +262,7 @@ const styles = StyleSheet.create({
     },
     modal:{
         border: 'none',
+        alignSelf: 'center',
     },
     closeButtonModal:{
         color: 'black',
