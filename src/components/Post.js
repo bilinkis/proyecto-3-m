@@ -127,19 +127,20 @@ export default class Post extends Component{
         }
         <Text style={styles.text}>Likes: {Number(this.state.likes)}</Text>
         <Text style={styles.text}>Publicado por: {this.props.item.data.owner}</Text>
-        <Text>{this.props.item.data.createdAt}</Text>
+        <Text>Publicado el: {this.props.item.data.createdAt}</Text>
         
         {this.state.modal === true?    
                     <Modal style={styles.modal}
                             animationType='fade'
                             transparent={false}
                             visible = {this.state.showModal}>
-                        <TouchableOpacity onPress={()=>this.closeModal()}>
-                            <Text>X</Text>
+                        <TouchableOpacity style={styles.botoncruz} onPress={()=>this.closeModal()}>
+                            <Text style={styles.cruz}>X Cerrar comentarios</Text>
                         </TouchableOpacity>
                         {
                             this.props.item.data.comments !==0 ?
                                 <FlatList 
+                                    style={styles.comentarios}
                                     data={this.props.item.data.comments}
                                     keyExtractor={post => post.createdAt.toString()}
                                     renderItem={({item})=> <Text> {item.author}: {item.commentContent}</Text>}
@@ -148,18 +149,19 @@ export default class Post extends Component{
                         }
                         <View>
                             <TextInput keyboardType='default'
+                                        style={styles.input}
                                         placeholder='Escribí tu comentario'
                                         onChangeText={(text)=>{this.setState({comment: text})}}
                                         multiline
                                         value={this.state.comment}
                             />
                             <TouchableOpacity onPress={()=>this.postComment()}>
-                                <Text>Enviar</Text>
+                                <Text style={styles.send}>Enviar</Text>
                             </TouchableOpacity>
                         </View>
 
                     </Modal> :
-                    <TouchableOpacity onPress={()=> this.showModal()}><Text>Ver comentarios</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=> this.showModal()}><Text style={styles.vercomm}>Ver comentarios</Text></TouchableOpacity>
                    
                }
    </Card>
@@ -175,9 +177,40 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    comentarios:{
+        padding: 10,
+    },
     text:{
         fontSize:18,
         fontWeight:'bold',
+    },
+    vercomm:{
+        fontWeight: 'bold',
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: 3,
+        textAlign: 'center',
+        margin: 3,
+
+    },
+    cruz:{
+        fontWeight: 'bold',
+        backgroundColor: '#E3E2DE',
+        borderRadius: 8,
+        textAlign: 'center',
+        padding: 2,
+    },
+    botoncruz:{
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    input:{
+        padding: 8,
+        backgroundColor: '#E3E2DE',
+        borderRadius: 3,
+        textAlign: 'center',
+        marginTop: 10,
+        marginBottom: 10,
     },
     title:{
         padding:10,
@@ -194,6 +227,14 @@ const styles = StyleSheet.create({
     like:{
         marginTop:10,
         color:'grey'
+    },
+    send:{
+        fontWeight: 'bold',
+        backgroundColor: 'black',
+        color: 'white',
+        borderRadius: 3,
+        textAlign: 'center',
+
     },
     dislike:{
         marginTop:10,
