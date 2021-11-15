@@ -16,6 +16,8 @@ export default class Post extends Component{
             likes:0,
             modal: false,
             comments:0,
+            comment:"",
+            error:""
 
         }
     }
@@ -88,7 +90,7 @@ export default class Post extends Component{
     }
 
     postComment(){
-        
+        if(this.state.comment !== ""){
         let comment = {
             author: auth.currentUser.email,
             createdAt: Date.now(),
@@ -100,14 +102,19 @@ export default class Post extends Component{
         .then(()=>{
             console.log('Comentario guardado');
             this.setState({
-                comment: ''
+                comment: '',
+                error:""
             })
         })
         .catch( e => console.log(e))
 
         
+    } else{
+        this.setState({
+            error:"El comentario no puede estar vacío"
+        })
     }
-
+}
     
 
    render(){
@@ -169,6 +176,11 @@ export default class Post extends Component{
                             <TouchableOpacity onPress={()=>this.postComment()}>
                                 <Text style={styles.send}>Enviar</Text>
                             </TouchableOpacity>
+                            {this.state.error !== "" ? 
+                            <Text style={styles.error}>{this.state.error}</Text>
+                            :
+                            <React.Fragment></React.Fragment>
+                            }
                         </View>
 
                     </Modal> :
@@ -276,6 +288,13 @@ const styles = StyleSheet.create({
     },
     trash:{
         color:'black'
+    },
+    error:{
+        padding:10,
+        fontSize:10,
+        color:'red',
+        alignItems: 'center',
+        justifyContent: 'space-around',
     }
    
 })
