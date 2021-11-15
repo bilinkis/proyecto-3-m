@@ -40,6 +40,12 @@ export default class Login extends Component{
                     <Text style = {styles.text}> ¿No tenés cuenta? Registrate </Text>
             </TouchableOpacity>
 
+{
+    this.props.error ?
+    <Text style={styles.error}>Debe completar todos los campos</Text>
+    :
+    <React.Fragment></React.Fragment>
+}
 
         </View>        
     )
@@ -57,7 +63,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         justifyContent: 'space-evenly',
         padding: 10,
-    },
+     },
     button:{
         borderRadius: 25,
         backgroundColor: 'white',
@@ -87,5 +93,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
 
+    },
+    error:{
+        padding:10,
+        fontSize:20,
+        color:'red',
+        alignItems: 'center',
+        justifyContent: 'space-around',
     }
 })
