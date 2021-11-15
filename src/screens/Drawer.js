@@ -7,6 +7,7 @@ import Register from './Register';
 import Home from './Home';
 import NewPost from './NewPost';
 import Search from './Search';
+import Profile from './Profile';
 import { auth } from '../firebase/config';
 
 export default class Drawer extends Component {
@@ -95,6 +96,9 @@ export default class Drawer extends Component {
                     <>
                     <Drawer.Screen name = "Home">
                         {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
+                    </Drawer.Screen>
+                    <Drawer.Screen name = "Profile">
+                        {props => <Profile {...props} />}
                     </Drawer.Screen>
                     <Drawer.Screen name = "New Post">
                                 {props => <NewPost {...props}/>}
