@@ -14,7 +14,7 @@ export default class Post extends Component{
         this.state = {
             liked: false,
             likes:0,
-            modal: true,
+            modal: false,
             comments:0,
 
         }
@@ -111,7 +111,7 @@ export default class Post extends Component{
     
 
    render(){
-       console.log(auth.currentUser)
+       console.log(this.props.item.data.comments.length)
        return(
     <View styles={styles.container}>
         <Card>
@@ -172,7 +172,7 @@ export default class Post extends Component{
                         </View>
 
                     </Modal> :
-                    <TouchableOpacity onPress={()=> this.showModal()}><Text style={styles.vercomm}>Ver comentarios</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={()=> this.showModal()}><Text style={styles.vercomm}>Ver comentarios ({this.props.item.data.comments.length !== undefined? this.props.item.data.comments.length: 0})</Text></TouchableOpacity>
                    
                }
    </Card>
