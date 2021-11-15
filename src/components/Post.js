@@ -123,7 +123,7 @@ export default class Post extends Component{
     <View styles={styles.container}>
         <Card>
         
-        {auth.currentUser.email === this.props.item.data.owner ?
+        {auth.currentUser.email === this.props.item.data.email ?
         <Text style={styles.title}>
             <Card.Title style={styles.title}>{this.props.item.data.description}</Card.Title>
         <TouchableOpacity onPress={() => this.handleDelete()}><Text><FontAwesomeIcon style={styles.trash} icon={faTrash}/></Text></TouchableOpacity>
