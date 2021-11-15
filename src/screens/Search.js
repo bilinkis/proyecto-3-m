@@ -19,7 +19,7 @@ export default class Search extends Component{
 
     search(){
         let searchQuery = this.state.searchQuery;
-        db.collection('posts').where('owner','==',searchQuery).onSnapshot(
+        db.collection('posts').where('email','==',searchQuery).onSnapshot(
             docs => {
                 console.log(docs)
                 let postsAux = []
