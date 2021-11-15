@@ -106,10 +106,10 @@ export default class Drawer extends Component {
                     :
                     <>
                         <Drawer.Screen name="Login">
-                            {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)}/>}
+                            {props => <Login {...props} handleLogin={(email, password)=>this.handleLogin(email, password)} error={this.state.error}/>}
                         </Drawer.Screen>
                         <Drawer.Screen name = "Register">
-                            {props => <Register {...props} handleRegister={(email, password,username)=>this.handleRegister(email, password,username)}/>}
+                            {props => <Register {...props} handleRegister={(email, password,username)=>this.handleRegister(email, password,username)} error={this.state.error}/>}
                         </Drawer.Screen>
                     </>
                 }
