@@ -39,11 +39,17 @@ render(){
                 />
 
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleRegister(this.state.email, this.state.password,this.state.username)}>
-                <Text styles={styles.text}>Registrate</Text>
+                <Text style={styles.text}>Registrate</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style = {styles.redirect} onPress={() => this.props.navigation.navigate('Login')}>
-                <Text styles={styles.text}>¿Ya tenés cuenta? Iniciá sesión</Text>
+                <Text style={styles.text}>¿Ya tenés cuenta? Iniciá sesión</Text>
                 </TouchableOpacity>
+                {
+    this.props.error ?
+    <Text style={styles.error}>Debe completar todos los campos</Text>
+    :
+    <React.Fragment></React.Fragment>
+}
             </View>
 
 
@@ -67,21 +73,24 @@ const styles = StyleSheet.create({
         padding: 10,
      },
      button:{
-         borderRadius: 25,
-         backgroundColor: 'white',
-         fontSize: 12,
-         width: '50%',
-         height: '25%',
-         justifyContent: 'space-evenly',
-         padding: 2,
-         marginTop:40,
-         marginLeft: 'auto',
-         marginRight: 'auto',
- 
-     },
+        borderRadius: 25,
+        backgroundColor: 'white',
+        fontSize: 12,
+        fontWeight: 'bold',
+        width: '50%',
+        height: '25%',
+        justifyContent: 'space-evenly',
+        padding: 2,
+        marginTop:40,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        zIndex:1
+
+    },
      text: {
          marginLeft: 'auto',
          marginRight: 'auto',
+         alignSelf: 'center',
          fontWeight: 'bold',
      },
      redirect:{
@@ -94,6 +103,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         fontWeight: 'bold',
  
-     }
+     },
+     error:{
+        padding:10,
+        fontSize:20,
+        color:'red',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    }
 
 })
