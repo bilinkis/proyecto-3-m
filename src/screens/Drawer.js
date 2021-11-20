@@ -20,7 +20,7 @@ export default class Drawer extends Component {
             }
             
             componentDidMount(){
-                auth.onAuthStateChanged(user => {
+                auth.onAuthStateChanged(user => { //remember me
                     if (user) {
                         this.setState({
                             loggedIn: true
@@ -34,7 +34,7 @@ export default class Drawer extends Component {
                 .then(response=>{
                     console.log(response)
                 console.log('Usuario logueado')
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario
                         console.log(user)
                       })
                 this.setState({
@@ -57,7 +57,7 @@ export default class Drawer extends Component {
                 this.setState({
                                 loggedIn: true
                 })
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos l usuario
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario
                     console.log(user)
                     user.updateProfile({
                         displayName: username
