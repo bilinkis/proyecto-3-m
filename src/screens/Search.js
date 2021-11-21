@@ -11,15 +11,13 @@ export default class Search extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            searchQuery: "",
             posts:[],
             loading:true,
         }
 }
 
-    search(){
-        let searchQuery = this.state.searchQuery;
-        db.collection('posts').where('email','==',searchQuery).onSnapshot(
+    search(text){
+        db.collection('posts').where('email','==',text).onSnapshot(
             docs => {
                 console.log(docs)
                 let postsAux = []
@@ -51,13 +49,11 @@ export default class Search extends Component{
                 style={styles.input}
                 keyboardType="email-address"
                 placeholder="insert the email here"
-                onChangeText={text=>this.setState({searchQuery: text})}              
+                onChangeText={text=>this.search(text)}              
                 />
                 
             
-            <TouchableOpacity style = {styles.button} onPress={() => this.search(this.state.searchQuery)}>
-                    <Text style = {styles.text}> Search </Text>
-            </TouchableOpacity>
+            
             </React.Fragment>
             {
             this.state.loading === false && this.state.posts.length > 0 ?
