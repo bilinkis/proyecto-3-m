@@ -34,9 +34,7 @@ export default class Drawer extends Component {
                 .then(response=>{
                     console.log(response)
                 console.log('Usuario logueado')
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario
-                        console.log(user)
-                      })
+            
                 this.setState({
                                 loggedIn: true
                 })
@@ -57,7 +55,7 @@ export default class Drawer extends Component {
                 this.setState({
                                 loggedIn: true
                 })
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario
+                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario del registro
                     console.log(user)
                     user.updateProfile({
                         displayName: username
