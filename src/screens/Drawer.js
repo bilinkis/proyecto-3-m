@@ -93,7 +93,7 @@ export default class Drawer extends Component {
                     {this.state.loggedIn === true ? 
                     <>
                     <Drawer.Screen name = "Home">
-                        {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
+                        {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>} {/* //desestructurando las props para pasarlas por separadog */}
                     </Drawer.Screen>
                     <Drawer.Screen name = "Profile">
                         {props => <Profile {...props} />}
