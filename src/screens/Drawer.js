@@ -55,7 +55,7 @@ export default class Drawer extends Component {
                 this.setState({
                                 loggedIn: true
                 })
-                auth.onAuthStateChanged(user=>{ //observa los datos obtenidos del usuario del registro
+                auth.onAuthStateChanged(user=>{ //consulta estado de autenticación
                     console.log(user)
                     user.updateProfile({
                         displayName: username
@@ -88,11 +88,11 @@ export default class Drawer extends Component {
                 const Drawer = createDrawerNavigator();
 
         return (
-                <NavigationContainer>
-                <Drawer.Navigator initialRouteName="Login">
+                <NavigationContainer> {/* estructura */}
+                <Drawer.Navigator initialRouteName="Login"> {/* lista de pantallas */}
                     {this.state.loggedIn === true ? 
                     <>
-                    <Drawer.Screen name = "Home">
+{/*  cada pantalla */}  <Drawer.Screen name = "Home">
                         {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>} {/* //desestructurando las props para pasarlas por separadog */}
                     </Drawer.Screen>
                     <Drawer.Screen name = "Profile">
