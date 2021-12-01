@@ -92,11 +92,6 @@ export default class Drawer extends Component {
                 <Drawer.Navigator initialRouteName="Login">
                     {this.state.loggedIn === true ? 
                     <>
-<<<<<<< HEAD
-                      <Drawer.Screen name = "Home">
-                        {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>} {/* //desestructurando las props para pasarlas por separadog */}
-=======
->>>>>>> dede9599e6b2a230f9d7827c1ccb4b6d617fff0f
                     <Drawer.Screen name = "Home">
                         {props => <Home {...props} handleLogout={()=>this.handleLogout()}/>}
                     </Drawer.Screen>
